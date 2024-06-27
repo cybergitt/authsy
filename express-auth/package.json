@@ -2,7 +2,8 @@
   "name": "express-auth",
   "version": "1.0.0",
   "description": "A simple user authentication APIs to authenticate users",
-  "main": "index.js",
+  "main": "index.ts",
+  "private": true,
   "engines": {
     "node": ">=18.20.2",
     "pnpm": ">=9.3.0",
@@ -16,9 +17,10 @@
     "type-check": "tsc",
     "prebuild": "rimraf ./dist",
     "build": "pnpm test && pnpm prebuild && tsc",
+    "clean": "rimraf dist coverage",
     "start": "node dist/app.js",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "prettier": "prettier --write --ignore-unknown */**/*.{js,jsx,json,ts,tsx,scss,css,md}",
+    "format": "prettier --write --ignore-unknown */**/*.{js,jsx,json,ts,tsx,scss,css,md}",
     "prepare": "husky"
   },
   "keywords": [
@@ -27,7 +29,7 @@
     "Express"
   ],
   "author": "Sigit Prayitno",
-  "license": "Apache-2.0",
+  "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
