@@ -3,25 +3,34 @@
     "types": ["node", "express"],
     "target": "ES2017",
     "module": "CommonJS",
-    "rootDirs": ["./src"],
-    "baseUrl": "./",
+    "rootDir": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@core/*": ["src/core/*"],
-      "@infrastructure/*": ["src/infrastructure/*"],
-      "@features/*": ["src/features/*"]
+      "@common/*": ["./src/common/*"],
+      "@features/*": ["./src/features/*"],
+      "@infrastructure/*": ["./src/infrastructure/*"]
     },
+    "outDir": "dist",
     "moduleResolution": "Node",
-    "typeRoots": ["./node_modules/@types"],
     "sourceMap": true,
-    "outDir": "dist/",
+    "allowJs": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
+    "noImplicitAny": true,
     "strict": true,
     "strictNullChecks": true,
     "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+  },
+  "tsc-alias": {
+    "resolveFullPaths": true,
+    "verbose": false
   },
   "extends": [],
-  "exclude": ["node_modules", "dist", "src/**/*.test.ts"],
-  "include": ["src/**/*.ts"]
+  "include": ["./src/**/*.ts", "./src/**/*.js"],
+  "exclude": ["node_modules", "dist"]
 }
