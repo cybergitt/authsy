@@ -2,7 +2,14 @@
   "name": "express-auth",
   "version": "1.0.0",
   "description": "A simple user authentication APIs to authenticate users",
-  "main": "index.ts",
+  "main": "./dist/index.cjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "types": "./dist/index.d.ts",
   "private": true,
   "engines": {
     "node": ">=18.20.2",
@@ -10,19 +17,21 @@
     "npm": "please-use-pnpm"
   },
   "scripts": {
-    "format": "prettier --ignore-path .gitignore --write \"./src/**/*.+(js|ts|json)\"",
-    "format:fix": "prettier --write src",
+    "format": "prettier '**/*.{ts,json,md}'",
+    "format:fix": "prettier --write '**/*.{ts,json,md}'",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage",
-    "type-check": "tsc && tsc-alias",
-    "prebuild": "rimraf dist coverage",
-    "build": "pnpm prebuild && swc src --out-dir dist",
-    "build:ts": "pnpm prebuild && tsc",
+    "type-check": "tsc --noEmit && tsc-alias",
     "debug:watch": "nodemon --ext ts --exec node --inspect -r @swc-node/register src/index.ts",
-    "debug:compile": "swc src -w --out-dir dist",
+    "debug:compile": "swc ./src -d dist -w",
     "dev": "concurrently \"pnpm debug:compile\" \"pnpm debug:watch\" ",
-    "start": "node dist/src/index.js"
+    "prebuild": "rimraf dist coverage",
+    "build:ts": "pnpm prebuild && pnpm type-check",
+    "build:swc": "pnpm prebuild && swc ./src -d dist",
+    "start:js": "node dist/src/index.js",
+    "start:cjs": "node ./dist/index.cjs",
+    "start:esm": "node ./dist/index.mjs"
   },
   "keywords": [
     "API",
