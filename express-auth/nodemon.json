@@ -1,0 +1,12 @@
+{
+    "watch": [
+        "src"
+    ],
+    "ext": "ts",
+    "exec": {
+        "ts": "@swc-node/register src/index.ts"
+    },
+    "ignore": [
+      "src/**/*.spec.ts"
+    ]
+}

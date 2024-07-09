@@ -1,36 +1,41 @@
 {
   "compilerOptions": {
-    "types": ["node", "express"],
-    "target": "ES2017",
-    "module": "CommonJS",
-    "rootDir": "./src",
-    "baseUrl": ".",
+    "declaration": true /* Generates corresponding '.d.ts' file. */,
+    "declarationMap": true, // This will allow code navigation between projects.
+    "target": "ES2021",
+    "module": "Node16",
+    "moduleResolution": "Node16", /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+    "lib": ["ES2021"], /* Specify a list of built-in API declaration groups that can be chose to include in project. */
+    /* Do not emit comments to output. */
+    "allowJs": true, /* Allow javascript files to be compiled. */
+    "checkJs": false, /* Report errors in .js files. */
+    "esModuleInterop": true, /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true, /* Disallow inconsistently-cased references to the same file. */
+    "noEmit": true, /* Do not emit outputs. */
+    /* Concatenate and emit output to single file. */
+    "outDir": "./dist", /* Redirect output structure to the directory. */
+    "rootDir": ".", /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
     "paths": {
       "@common/*": ["./src/common/*"],
       "@features/*": ["./src/features/*"],
-      "@infrastructure/*": ["./src/infrastructure/*"]
+      "@infrastructure/*": ["./src/infrastructure/*"],
     },
-    "outDir": "dist",
-    "moduleResolution": "Node",
-    "sourceMap": true,
-    "allowJs": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noImplicitAny": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "skipLibCheck": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-  },
-  "tsc-alias": {
-    "resolveFullPaths": true,
-    "verbose": false
+    "typeRoots": ["./node_modules/@types"],
+    "noImplicitReturns": true, /* Will check all code paths in a function to ensure they return a value. */
+    "noImplicitAny": true, /* Will fall back to a type of any for a variable when it cannot infer the type. */
+    "strictNullChecks": false,
+    "skipLibCheck": true, /* Skip type checking of declaration files. */
+    "sourceMap": true,
+    "strict": true /* Enable all strict type-checking options. */
   },
   "extends": [],
-  "include": ["./src/**/*.ts", "./src/**/*.js"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"],
+  "ts-node": {
+    "swc": true
+  },
+  "compileOnSave": true,
 }

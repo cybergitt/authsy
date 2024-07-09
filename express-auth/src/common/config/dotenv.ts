@@ -1,41 +1,52 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 const dotenv = require('dotenv');
 dotenv.config();
 
 const EnvSchema = z.object({
-    NODE_ENV: z.enum(
-      [
-        'development',
-        'test',
-        'staging',
-        'production',
-      ],
-      {
-        description: 'This gets updated depending on your environment',
-      }
-    ).default('development'),
-    HOST: z.string({
-        description: 'Server Host string',
-        required_error: 'Please provide server host',
+  NODE_ENV: z
+    .enum(['development', 'staging', 'test', 'production'], {
+      description: 'This gets updated depending on your environment',
     })
-    .url()
+    .default('development'),
+
+  APP_NAME: z
+    .string({
+      description: 'Application Name string',
+      required_error: 'Please provide application name',
+    })
+    .default('API'),
+
+  SERVER_NAME: z
+    .string({
+      description: 'Server Name string',
+      required_error: 'Please provide server name',
+    })
+    .default('API'),
+
+  SERVER_HOST: z
+    .string({
+      description: 'Server Host string',
+      required_error: 'Please provide server host',
+    })
     .min(3)
     .default('127.0.0.1'),
-    PORT: z.coerce
-      .number({
-        description: '.env files convert numbers to strings, therefoore we have to enforce them to be numbers',
+
+  SERVER_PORT: z.coerce
+    .number({
+      description:
+        '.env files convert numbers to strings, therefoore we have to enforce them to be numbers',
     })
     .positive()
     .max(65536, `options.port should be >= 0 and < 65536`)
     .default(3000),
-    DATABASE_URL: z.string({
-        description: 'DB Connection string',
-        required_error: 'Please provide a database URL',
+
+  SERVER_TIMEZONE: z
+    .string({
+      description: 'Server Timezone string',
+      required_error: 'Please provide server timezone',
     })
-    .url()
-    .min(3),
-  });
+    .default('UTC+7'),
+});
 
-  export const env = EnvSchema.parse(process.env);
-
+export const env = EnvSchema.parse(process.env);

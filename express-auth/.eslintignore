@@ -1,6 +1,7 @@
 node_modules/
 dist/
 coverage
-package-lock.json
 package.json
+package-lock.json
+pnpm-lock.yaml
 jest.config.ts
